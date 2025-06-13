@@ -2,30 +2,35 @@ import { React, useEffect, useState } from 'react'
 
 function App() {
 
-  const [backendData, setBackendData] = useState([{}])
+  const [users, setUsers] = useState(null)
 
   useEffect(() => {
-    fetch("/").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("http://localhost:3000");
+        const data = await res.json();
+        setUsers(data.users);
+      } catch (err) {
+        console.error("error fetching users", err);
       }
-    )
-  }, [])
+    }
+    fetchUsers();
+  }, []);
 
   return (
-    <div>
-      {(typeof backendData.users === 'undefined') ?  (
-        <p>Loading...</p>
-      ): (
-        backendData.users.map((user, i) =>  (
-          <p key={i}>{user}</p>
-
-        ))
+    <>
+    <h1>Data:</h1>
+    {!users ? (
+      <div>Loading...</div>
+    ) : (
+      <ul>
+        {users.map((user) =>
+        <li key={user.id}>{user.name}</li>
       )}
-    </div>
-  )
+      </ul>
+    )}
+    </>
+  );
 }
 
 export default App
