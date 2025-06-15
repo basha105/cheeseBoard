@@ -1,0 +1,10 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    padding-left: 32px;
+    gap: 32px;
+    height: 36px;
+    font-size: 1em;
+    color: white;
+    background-color:rgb(31, 37, 210)
+}
