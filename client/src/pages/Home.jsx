@@ -7,8 +7,11 @@ function Home() {
     return (
         <div class="home-page">
             <Navbar />
-            <h1>Welcome to cheeseBoard!</h1>
-            <h2>Log in or create an account to track your cheese!</h2>
+            <div className="m-12 flex flex-col items-center">
+                <div className="text-4xl mb-2">Welcome to <span className="font-semibold text-blue-400">cheeseBoard</span></div>
+                <div>cheeseBoard is a community dedicated to all things cheese. Rate, review, and track your cheese journey!</div>
+                <div>"Poets have been mysteriously silent on the subject of cheese." - G.K. Chesterton</div>
+            </div>
         </div>
     )
 }
