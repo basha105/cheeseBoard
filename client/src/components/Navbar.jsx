@@ -1,13 +1,15 @@
-import { React } from 'react'
+import { React } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/navbar.css'
 
 function Navbar() {
     return (
-        <div class="navbar-container">
-            <div class='navbar-item'>cheeseBoard</div>
-            <div class='navbar-item'>sign in</div>
-            <div class='navbar-item'>cheeses</div>
-        </div>
+        <ul class="navbar-list">
+            <li><Link>home</Link></li>
+            <li><Link>cheese</Link></li>
+            <li><Link>map</Link></li>
+            <li><Link>sign in</Link></li>
+        </ul>
     )
 }
 

@@ -1,10 +1,12 @@
-.navbar-container {
+.navbar-list {
     display: flex;
-    align-items: center;
-    padding-left: 32px;
+    list-style-type: none;
     gap: 32px;
-    height: 36px;
-    font-size: 1em;
+    background-color: rgb(36, 36, 206);
+    height: 50px;
+    
+}
+
+li a {
     color: white;
-    background-color:rgb(31, 37, 210)
 }
