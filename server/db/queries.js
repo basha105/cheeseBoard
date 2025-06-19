@@ -5,6 +5,12 @@ async function getCountries() {
     return countries;
 }
 
+async function getCheeses() {
+    const cheeses = await pool.query("SELECT * FROM cheeses");
+    return cheeses;
+}
+
 module.exports = {
-    getCountries
+    getCountries,
+    getCheeses
 }

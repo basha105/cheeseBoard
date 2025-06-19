@@ -4,41 +4,40 @@ import CheeseCard from '../components/CheeseCard';
 
 function Cheeses() {
 
-    const [countries, setCountries] = useState(null);
-    
+    const [cheeses, setCheeses] = useState(null);
+
     useEffect(() => {
-        const fetchCountries = async () => {
+        const fetchCheeses = async () => {
             try {
-                const res = await fetch("http://localhost:3000/countries");
+                const res = await fetch("http://localhost:3000/cheeses");
                 const data = await res.json();
-                setCountries(data);
+                setCheeses(data);
             } catch (err) {
-                console.error("error fetching countries", err);
+                console.error("error fetching cheeses", err);
             }
         }
-        fetchCountries();
+        fetchCheeses();
     }, []);
 
     return (
-        <>
-        <Navbar />
-        <div className="m-2">
-            <div className="text-5xl">All Cheeses</div>
-        </div>
-        
-        <CheeseCard />
-        <div className="text-2xl m-5">Countries:</div>
-        {!countries ? (
-            <div>Loading...</div>
-        ) : (
-            <ul>
-                {countries.map((country) =>
-                <li key={country.id}>{country.name}</li>
-                )}
-            </ul>
-        )}
 
-        </>
+        <div >
+            <Navbar />
+            <h1 className="border-green-800">Cheeses:</h1>
+            {!cheeses ? (
+            <div>Loading...</div>
+            ) : (
+            <div className="flex flex-wrap gap-4 m-4">
+                {cheeses.map((cheese) =>
+                <CheeseCard name={cheese.name}/>
+                )}
+            </div>
+        )}
+        </div>
+       
+
+        
+        
     )
 
 }
