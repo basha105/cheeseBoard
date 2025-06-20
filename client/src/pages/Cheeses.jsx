@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Navbar from '../components/navbar'
 import CheeseCard from '../components/CheeseCard';
+import { Link } from 'react-router-dom';
 
 function Cheeses() {
 
@@ -29,7 +30,9 @@ function Cheeses() {
             ) : (
             <div className="flex flex-wrap gap-4 m-4">
                 {cheeses.map((cheese) =>
-                <CheeseCard name={cheese.name}/>
+                <Link to={`/cheeses/${cheese.id}`}>
+                    <CheeseCard name={cheese.name} country={cheese.country} milk={cheese.country}/>
+                </Link>
                 )}
             </div>
         )}

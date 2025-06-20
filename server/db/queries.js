@@ -10,7 +10,13 @@ async function getCheeses() {
     return cheeses;
 }
 
+async function getCheeseById(id) {
+    const cheese = await pool.query(`SELECT * FROM cheeses WHERE id=${id}`);
+    return cheese;
+}
+
 module.exports = {
     getCountries,
-    getCheeses
+    getCheeses,
+    getCheeseById
 }
