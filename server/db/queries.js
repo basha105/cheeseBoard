@@ -11,7 +11,9 @@ async function getCheeses() {
 }
 
 async function getCheeseByName(name) {
-    const cheese = await pool.query('SELECT * FROM cheeses WHERE name = $1', [name]);
+    const cheese = await pool.query(
+        'SELECT cheeses.name, countries.country_name FROM cheeses INNER JOIN countries ON cheeses.country_id=countries.country_id WHERE cheeses.name = $1', [name]
+    );
     return cheese;
 }
 

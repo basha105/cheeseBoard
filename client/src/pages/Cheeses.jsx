@@ -24,7 +24,7 @@ function Cheeses() {
 
         <div >
             <Navbar />
-            <h1 className="border-green-800">Cheeses:</h1>
+            <h1 className="m-4">Cheeses:</h1>
             {!cheeses ? (
             <div>Loading...</div>
             ) : (
