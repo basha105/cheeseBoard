@@ -30,10 +30,11 @@ function Cheeses() {
             ) : (
             <div className="flex flex-wrap gap-4 m-4">
                 {cheeses.map((cheese) =>
-                <Link to={`/cheeses/${cheese.id}`}>
-                    <CheeseCard name={cheese.name} country={cheese.country} milk={cheese.country}/>
+                <Link key={cheese.id} to={`/cheeses/${(cheese.name).toLowerCase()}`}>
+                    <CheeseCard name={cheese.name} />
                 </Link>
                 )}
+
             </div>
         )}
         </div>

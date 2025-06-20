@@ -7,14 +7,13 @@ async function displayCountries(req, res) {
 
 async function sendCheesesRes(req, res) {
     const { rows } = await db.getCheeses();
-    console.log(rows);
     res.json(rows);
 }
 
-async function sendCheeseRes(id, req, res) {
-    const { rows } = await db.getCheeseById(id);
-    const cheese = rows[0];
-    res.json(cheese);
+async function sendCheeseRes(req, res) {
+    const { cheeseName } = req.params;
+    const { rows } = await db.getCheeseByName(cheeseName);
+    res.json(rows[0]);
 }
 
 module.exports = {

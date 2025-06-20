@@ -6,6 +6,7 @@ const app = express();
 
 app.use(cors());
 
+app.get("/cheeses/:cheeseName", indexController.sendCheeseRes);
 app.get("/cheeses", indexController.sendCheesesRes);
 
 
