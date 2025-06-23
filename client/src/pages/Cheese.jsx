@@ -1,9 +1,18 @@
 import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
-import comte from '../assets/comte.jpg';
 import getFlag from '../assets/flags';
 import "flag-icons/css/flag-icons.min.css";
+
+const images = import.meta.glob('../assets/images/*.jpg');
+const imageMap = {};
+for (const path in images) {
+    const filename = path.split('/').pop();
+    const cheesename = filename.replace('.jpg', '');
+    imageMap[cheesename] = path;
+}
+
+
 
 function Cheese() {
     const [cheese, setCheese] = useState(null);
@@ -54,13 +63,11 @@ function Cheese() {
         ) : (
             <div className="flex justify-center">
                 <div className="m-4 w-80 h-60 shadow rounded overflow-hidden">
-                    <img className="" src={comte} alt=""/>
+                    <img src={imageMap[cheese.name]} alt=""/>
                 </div>
                 <div className="m-4 w-75 h- shadow border-1 rounded">
                     <h1 className="text-4xl">{capitalizeCheese(cheese.name)}</h1>
                     <h2>{fixCountryName(cheese.country_name)} <span class={setFlag()}></span></h2>
-
-                    
                 </div>
             </div>
                 

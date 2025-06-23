@@ -20,9 +20,7 @@ function Cheeses() {
         fetchCheeses();
     }, []);
 
-    function capitalizeCheese(name) {
-        return String(name).charAt(0).toUpperCase() + String(name).slice(1);
-    }
+    
 
     return (
 
@@ -35,7 +33,7 @@ function Cheeses() {
             <div className="flex flex-wrap gap-4 m-4">
                 {cheeses.map((cheese) =>
                 <Link key={cheese.id} to={`/cheeses/${(cheese.name).toLowerCase()}`}>
-                    <CheeseCard name={capitalizeCheese(cheese.name)} />
+                    <CheeseCard name={(cheese.name).toLowerCase()} />
                 </Link>
                 )}
 
