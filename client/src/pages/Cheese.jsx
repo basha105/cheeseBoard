@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
 import getFlag from '../assets/flags';
+import getImage from '../assets/images.jsx';
 import "flag-icons/css/flag-icons.min.css";
 
 const images = import.meta.glob('../assets/images/*.jpg');
@@ -62,12 +63,18 @@ function Cheese() {
             <div>Loading...</div>
         ) : (
             <div className="flex justify-center">
-                <div className="m-4 w-80 h-60 shadow rounded overflow-hidden">
-                    <img src={imageMap[cheese.name]} alt=""/>
+                <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
+                    <img src={getImage(cheese.name)} alt=""/>
                 </div>
-                <div className="m-4 w-75 h- shadow border-1 rounded">
-                    <h1 className="text-4xl">{capitalizeCheese(cheese.name)}</h1>
-                    <h2>{fixCountryName(cheese.country_name)} <span class={setFlag()}></span></h2>
+                <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
+                    <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
+                    <div className="flex flex-col gap-1">
+                        <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
+                        <p>Milk:</p>
+                        <p>Flavours:</p>
+                        <p>Textures:</p>
+                    </div>
+                    
                 </div>
             </div>
                 
