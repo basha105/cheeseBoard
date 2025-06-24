@@ -13,8 +13,6 @@ for (const path in images) {
     imageMap[cheesename] = path;
 }
 
-
-
 function Cheese() {
     const [cheese, setCheese] = useState(null);
     const { cheeseName } = useParams();
@@ -62,23 +60,26 @@ function Cheese() {
         {!cheese ? (
             <div>Loading...</div>
         ) : (
-            <div className="flex justify-center">
-                <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
-                    <img src={getImage(cheese.name)} alt=""/>
-                </div>
-                <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
-                    <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
-                    <div className="flex flex-col gap-1">
-                        <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
-                        <p>Milk:</p>
-                        <p>Flavours:</p>
-                        <p>Textures:</p>
+            <div className="flex flex-col items-center">
+                <div className="flex justify-center">
+                    <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
+                        <img src={getImage(cheese.name)} alt=""/>
                     </div>
-                    
+                    <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
+                        <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
+                        <div className="flex flex-col gap-1">
+                            <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
+                            <p>Made with {cheese.milk_name}'s milk</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-                
 
+                <div className="w-173 bg-gray-100 shadow border-1 border-gray-200 rounded p-6">
+                    {cheese.desc}
+                </div>
+
+
+            </div>
             )}
         
         </div>
