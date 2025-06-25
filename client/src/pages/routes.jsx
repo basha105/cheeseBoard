@@ -1,6 +1,7 @@
 import Home from "./Home";
 import Cheeses from "./Cheeses";
 import Cheese from "./Cheese";
+import SignIn from "./SignIn";
 
 const routes = [
     {
@@ -15,6 +16,10 @@ const routes = [
     {
         path: "/cheeses/:cheeseName",
         element: <Cheese />
+    },
+    {
+        path: "/sign-in",
+        element: <SignIn />
     }
 ];
 

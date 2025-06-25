@@ -27,10 +27,18 @@ async function getCheeseById(id) {
     return cheese;
 }
 
+async function insertUser(username, password) {
+    await pool.query('INSERT INTO users (username, password) VALUES ($1, $2)', [
+        username,
+        password
+    ]);
+}
+
 module.exports = {
     getCountries,
     getCheeses,
     getCheesesByCountry,
     getCheeseByName,
-    getCheeseById
+    getCheeseById,
+    insertUser
 }
