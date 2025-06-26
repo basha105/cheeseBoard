@@ -34,11 +34,17 @@ async function insertUser(username, password) {
     ]);
 }
 
+async function getUserById(id) {
+    const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+    return user;
+}
+
 module.exports = {
     getCountries,
     getCheeses,
     getCheesesByCountry,
     getCheeseByName,
     getCheeseById,
-    insertUser
+    insertUser,
+    getUserById
 }

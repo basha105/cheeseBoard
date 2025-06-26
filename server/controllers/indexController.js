@@ -29,9 +29,15 @@ async function insertUser(req, res, next) {
     }
 };
 
+async function getUserById(id) {
+    const { rows } = await db.getUserById(id);
+    return rows;
+}
+
 module.exports = {
     displayCountries,
     sendCheesesRes,
     sendCheeseRes,
-    insertUser
+    insertUser,
+    getUserById
 }
