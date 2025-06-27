@@ -16,3 +16,4 @@ async function getUserById(id) {
     return rows;
 
 }
+
