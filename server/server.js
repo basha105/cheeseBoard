@@ -4,6 +4,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy; 
 const cors = require('cors');
 const indexController = require('./controllers/indexController');
+const passportController = require('./controllers/passportController');
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 passport.use(
     new LocalStrategy(async (username, password, done) => {
         try {
-            const { rows } = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+            const { rows } = passportController.getUserById(id);
             const user = rows[0];
             if (!user) {
                 return done(null, false, { message: "incorrect username" });
@@ -36,7 +37,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
     try {
-        const { rows } = indexController.getUserById(id);
+        const { rows } = passportController.getUserById(id);
         const user = rows[0];
         done(null, user);
     } catch(err) {
