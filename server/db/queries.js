@@ -39,6 +39,11 @@ async function getUserById(id) {
     return rows;
 }
 
+async function getUserByUsername(username) {
+    const rows = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+    return rows;
+}
+
 module.exports = {
     getCountries,
     getCheeses,
@@ -46,5 +51,6 @@ module.exports = {
     getCheeseByName,
     getCheeseById,
     insertUser,
-    getUserById
+    getUserById,
+    getUserByUsername
 }
