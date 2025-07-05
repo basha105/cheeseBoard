@@ -20,7 +20,8 @@ app.post("/sign-up", passportController.insertUser); // I removed the BS that wa
 passport.use(
     new LocalStrategy(async (username, password, done) => {
         try {
-            const { rows } = passportController.getUserByUsername(username);
+            console.log('attempting log in...');
+            const rows = passportController.getUserByUsername(username);
             const user = rows[0];
 
             if (!user) {
@@ -29,6 +30,7 @@ passport.use(
             if (user.password !== password) {
                 return done(null, false, { message: "incorrect password." });
             }
+            console.log('logged in!');
             return done(null, user);
         } catch(err) {
             return done(err);
@@ -52,13 +54,12 @@ passport.deserializeUser(async (id, done) => {
 
 });
 
-app.post('/sign-in', 
+app.post("/sign-in", 
     passport.authenticate("local", {
-        successRedirect: "http://localhost:5173",
-        failureRedirect: "http://localhost:5173"
+        successRedirect: "/cheeses",
+        failureRedirect: "/cheeses"
     })
 );
-
 
 app.listen(3000, () => {
     console.log("listening at port 3000");
