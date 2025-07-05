@@ -17,7 +17,7 @@ function CheeseCard({ name, country }) {
             <div className="rounded overflow-hidden">
                 <img className="w-xs" src={getImage(name)} alt="gouda img"/>
             </div>
-            <p className="text-3xl font-">{capitalizeCheese(name)}</p>
+            <p className="text-2xl font-">{capitalizeCheese(name)}</p>
             <p>{country}</p>
         </div>
     )

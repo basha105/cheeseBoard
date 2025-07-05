@@ -5,14 +5,6 @@ import getFlag from '../assets/flags';
 import getImage from '../assets/images.jsx';
 import "flag-icons/css/flag-icons.min.css";
 
-const images = import.meta.glob('../assets/images/*.jpg');
-const imageMap = {};
-for (const path in images) {
-    const filename = path.split('/').pop();
-    const cheesename = filename.replace('.jpg', '');
-    imageMap[cheesename] = path;
-}
-
 function Cheese() {
     const [cheese, setCheese] = useState(null);
     const { cheeseName } = useParams();
