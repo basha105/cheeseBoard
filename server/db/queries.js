@@ -50,6 +50,11 @@ async function insertComment(comment, cheeseID) {
     ]);
 }
 
+async function getComments(cheese) {
+    const rows = await pool.query('SELECT comments.content, comments.comment_id, cheeses.name FROM comments INNER JOIN cheeses ON comments.cheese_id = cheeses.id WHERE cheeses.name = $1', [cheese]);
+    return rows;
+}
+
 
 
 module.exports = {
@@ -61,5 +66,6 @@ module.exports = {
     insertUser,
     getUserById,
     getUserByUsername,
-    insertComment
+    insertComment,
+    getComments
 }

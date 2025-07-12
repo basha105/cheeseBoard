@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/navbar';
+import Comment from '../components/Comment.jsx'
 import getFlag from '../assets/flags';
 import getImage from '../assets/images.jsx';
 import "flag-icons/css/flag-icons.min.css";
@@ -47,7 +48,7 @@ function Cheese() {
     }
 
     const [content, setContent] = useState('');
-
+    const [posted, setPosted] = useState(false);
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -64,10 +65,29 @@ function Cheese() {
             },
             body: JSON.stringify(commentData)
         });
+        setPosted(true);
         if (response.ok) {
             console.log('posted');
+
         }
     }
+
+    const [comments, setComments] = useState(null);
+
+
+    useEffect(() => {
+        const fetchComments = async () => {
+            try {
+                const res = await fetch(`http://localhost:3000/cheeses/${cheeseName}/comments`);
+                const data = await res.json();
+                console.log('comments:', data);
+                setComments(data);
+            } catch(err) {
+                console.error('error fetching comments', err);
+            }
+        }
+        fetchComments();
+    }, [cheese, cheeseName, posted]);
         
     return (
         <div className="">
@@ -103,18 +123,20 @@ function Cheese() {
                         </form>
 
                     </div>
-
-                    
                 </div>
-
-
-                
-
-            
-
             </>
-
-            
+            )}
+            {!comments ? (
+                <div>Loading comments...</div>
+            ) : (
+                <div className="flex flex-col flex-wrap gap-12 items-center w-290">
+                    {comments.map((comment) =>
+                    <div key={comment.id}>
+                        <Comment content={comment.content}/>
+                    </div>
+                    
+                    )}
+                </div>  
             )}
         
         </div>

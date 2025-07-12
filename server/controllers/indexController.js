@@ -22,9 +22,17 @@ async function postComment(req, res) {
     res.json({message: 'true' });
 }
 
+async function sendComments(req, res) {
+    const { cheeseName } = req.params;
+    console.log(cheeseName);
+    const { rows } = await db.getComments(cheeseName);
+    res.json(rows);
+}
+
 module.exports = {
     displayCountries,
     sendCheesesRes,
     sendCheeseRes,
-    postComment
+    postComment,
+    sendComments
 }
