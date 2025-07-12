@@ -44,6 +44,8 @@ async function getUserByUsername(username) {
     return rows;
 }
 
+
+
 module.exports = {
     getCountries,
     getCheeses,
@@ -52,5 +54,5 @@ module.exports = {
     getCheeseById,
     insertUser,
     getUserById,
-    getUserByUsername
+    getUserByUsername,
 }

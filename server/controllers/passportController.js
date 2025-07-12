@@ -8,11 +8,11 @@ async function insertUser(req, res, next) {
 
     try {
         await db.insertUser(username, password);
-        res.json('');
 
     } catch(err) {
         return next(err);
     }
+    res.json('');
 };
 
 async function getUserById(id) {

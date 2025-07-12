@@ -6,6 +6,7 @@ function Profile() {
     return (
         <div>
             <Navbar />
+            
 
             
             

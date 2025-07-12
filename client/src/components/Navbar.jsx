@@ -6,7 +6,6 @@ function Navbar() {
         <div className="h-10 flex text-blue-400 bg-white p-1 shadow">
             <ul className="flex">
                 <li className="flex items-center hover:bg-gray-100 px-2 rounded font-bold"><Link to="/">cheeseBoard</Link></li>
-                <li className="flex items-center hover:bg-gray-100 px-2 rounded"><Link className="">reviews</Link></li>
                 <li className="flex items-center hover:bg-gray-100 px-2 rounded"><Link className="" to="/cheeses">cheeses</Link></li>
                 <li className="flex items-center w-250">
                     <form className="" action="">
@@ -15,7 +14,6 @@ function Navbar() {
                     </form>
                 </li>
             </ul>
-            <div className="flex items-center mr-1 hover:bg-gray-100 px-2 rounded"><Link to="/sign-in">sign in</Link></div>
             
         </div>
         

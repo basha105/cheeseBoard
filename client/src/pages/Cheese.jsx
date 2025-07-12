@@ -45,6 +45,27 @@ function Cheese() {
     function capitalizeCheese(name) {
         return String(name).charAt(0).toUpperCase() + String(name).slice(1);
     }
+
+    const [content, setContent] = useState('');
+
+    async function handleSubmit(event) {
+        event.preventDefault();
+        alert(content);
+
+        const commentData = {
+            'comment': content,
+            'cheeseID': cheese.id
+        }
+
+        const response = await fetch('http://localhost:3000/postComment', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(commentData)
+        });
+
+    }
         
     return (
         <div className="">
@@ -52,26 +73,47 @@ function Cheese() {
         {!cheese ? (
             <div>Loading...</div>
         ) : (
-            <div className="flex flex-col items-center">
-                <div className="flex justify-center">
-                    <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
-                        <img src={getImage(cheese.name)} alt=""/>
-                    </div>
-                    <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
-                        <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
-                        <div className="flex flex-col gap-1">
-                            <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
-                            <p>Made with {cheese.milk_name}'s milk</p>
+            <>
+                <div className="flex flex-col items-center">
+                    <div className="flex justify-center">
+                        <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
+                            <img src={getImage(cheese.name)} alt=""/>
+                        </div>
+                        <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
+                            <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
+                            <div className="flex flex-col gap-1">
+                                <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
+                                <p>Made with {cheese.milk_name}'s milk</p>
+                            </div>
                         </div>
                     </div>
+
+                    <div className="w-173 bg-gray-100 shadow border-1 border-gray-200 rounded p-6">
+                        {cheese.desc}
+                    </div>
+
+                    <div className="flex flex-col item-start w-170 m-5">
+                        <h1 className='text-2xl'>Comments</h1>
+                        <form className="flex flex-col" onSubmit={handleSubmit}>
+                            <label htmlFor="comment"></label>
+                            <textarea className="border-1 border-gray-200 rounded w-150 h-35 resize-none focus:outline-none indent-1" name="comment" id="comment" value={content} onChange={(e) => setContent(e.target.value)} placeholder={`Share your experience with ${cheese.name}...`}></textarea>
+                            <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-300 text-white rounded w-25" type="submit">Post</button>
+                        </form>
+
+                    </div>
+
+                    
                 </div>
 
-                <div className="w-173 bg-gray-100 shadow border-1 border-gray-200 rounded p-6">
-                    {cheese.desc}
-                </div>
+                
 
+                
 
-            </div>
+            
+
+            </>
+
+            
             )}
         
         </div>

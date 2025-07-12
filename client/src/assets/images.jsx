@@ -33,8 +33,6 @@ import roquefort from './images/roquefort.jpg';
 import stilton from './images/stilton.jpg';
 import taleggio from './images/taleggio.jpg';
 
-
-
 const imageURL = {
     appenzeller,
     asiago,
