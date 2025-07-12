@@ -48,9 +48,9 @@ function Cheese() {
 
     const [content, setContent] = useState('');
 
+
     async function handleSubmit(event) {
         event.preventDefault();
-        alert(content);
 
         const commentData = {
             'comment': content,
@@ -64,7 +64,9 @@ function Cheese() {
             },
             body: JSON.stringify(commentData)
         });
-
+        if (response.ok) {
+            console.log('posted');
+        }
     }
         
     return (
@@ -105,7 +107,6 @@ function Cheese() {
                     
                 </div>
 
-                
 
                 
 

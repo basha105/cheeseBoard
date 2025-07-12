@@ -11,6 +11,7 @@ app.use(cors());
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 app.use(passport.session());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/cheeses/:cheeseName", indexController.sendCheeseRes); // Only necessary to create these routes because they retrieve data from db
@@ -60,6 +61,8 @@ app.post("/sign-in",
         failureRedirect: "/"
     })
 );
+
+app.post("/postComment", indexController.postComment);
 
 
 

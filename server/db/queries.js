@@ -17,7 +17,7 @@ async function getCheesesByCountry(country){
 
 async function getCheeseByName(name) {
     const cheese = await pool.query(
-        'SELECT cheeses.name, cheeses.desc, countries.country_name, milk.milk_name FROM cheeses INNER JOIN countries ON cheeses.country_id=countries.country_id INNER JOIN milk ON cheeses.milk_id=milk.id WHERE cheeses.name = $1', [name]
+        'SELECT cheeses.name, cheeses.id, cheeses.desc, countries.country_name, milk.milk_name FROM cheeses INNER JOIN countries ON cheeses.country_id=countries.country_id INNER JOIN milk ON cheeses.milk_id=milk.id WHERE cheeses.name = $1', [name]
     );
     return cheese;
 }
@@ -44,6 +44,12 @@ async function getUserByUsername(username) {
     return rows;
 }
 
+async function insertComment(comment, cheeseID) {
+    await pool.query('INSERT INTO comments (content, cheese_id) VALUES ($1, $2)', [
+        comment, cheeseID
+    ]);
+}
+
 
 
 module.exports = {
@@ -55,4 +61,5 @@ module.exports = {
     insertUser,
     getUserById,
     getUserByUsername,
+    insertComment
 }

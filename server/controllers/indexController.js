@@ -16,8 +16,15 @@ async function sendCheeseRes(req, res) {
     res.json(rows[0]);
 }
 
+async function postComment(req, res) {
+    const { comment, cheeseID } = req.body;
+    await db.insertComment(comment, cheeseID);
+    res.json({message: 'true' });
+}
+
 module.exports = {
     displayCountries,
     sendCheesesRes,
     sendCheeseRes,
+    postComment
 }
