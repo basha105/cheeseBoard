@@ -47,13 +47,13 @@ function Cheese() {
         return String(name).charAt(0).toUpperCase() + String(name).slice(1);
     }
 
-    const [content, setContent] = useState('');
-    const [posted, setPosted] = useState(false);
-
     async function handleSubmit(event) {
         event.preventDefault();
 
-        const commentData = {
+        const commentData = new FormData(event.target);
+        const content = commentData.get('comment');
+
+        const toSend = {
             'comment': content,
             'cheeseID': cheese.id
         }
@@ -63,17 +63,15 @@ function Cheese() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(commentData)
+            body: JSON.stringify(toSend)
         });
-        setPosted(true);
         if (response.ok) {
             console.log('posted');
-
+            window.location.reload();
         }
     }
 
     const [comments, setComments] = useState(null);
-
 
     useEffect(() => {
         const fetchComments = async () => {
@@ -87,7 +85,7 @@ function Cheese() {
             }
         }
         fetchComments();
-    }, [cheese, cheeseName, posted]);
+    }, [cheese, cheeseName]);
         
     return (
         <div className="">
@@ -115,10 +113,10 @@ function Cheese() {
                     </div>
 
                     <div className="flex flex-col item-start w-170 m-5">
-                        <h1 className='text-2xl'>Comments</h1>
+                        <h1 className='text-2xl mb-2'>Comments</h1>
                         <form className="flex flex-col" onSubmit={handleSubmit}>
                             <label htmlFor="comment"></label>
-                            <textarea className="border-1 border-gray-200 rounded w-150 h-35 resize-none focus:outline-none indent-1" name="comment" id="comment" value={content} onChange={(e) => setContent(e.target.value)} placeholder={`Share your experience with ${cheese.name}...`}></textarea>
+                            <textarea className="border-1 border-gray-200 rounded w-150 h-35 resize-none focus:outline-none indent-1" name="comment" id="comment" placeholder={`Share your experience with ${cheese.name}...`}></textarea>
                             <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-300 text-white rounded w-25" type="submit">Post</button>
                         </form>
 
@@ -129,12 +127,11 @@ function Cheese() {
             {!comments ? (
                 <div>Loading comments...</div>
             ) : (
-                <div className="flex flex-col flex-wrap gap-12 items-center w-290">
-                    {comments.map((comment) =>
+                <div className="flex flex-col flex-wrap gap-10 items-center w-290 mb-10">
+                    {[...comments].reverse().map((comment) =>
                     <div key={comment.id}>
                         <Comment content={comment.content}/>
                     </div>
-                    
                     )}
                 </div>  
             )}
