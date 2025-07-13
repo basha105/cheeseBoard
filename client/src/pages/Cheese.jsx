@@ -52,23 +52,28 @@ function Cheese() {
 
         const commentData = new FormData(event.target);
         const content = commentData.get('comment');
-
-        const toSend = {
-            'comment': content,
-            'cheeseID': cheese.id
+        if (content.length > 5) {
+            const toSend = {
+                'comment': content,
+                'cheeseID': cheese.id
+            }
+    
+            const response = await fetch('http://localhost:3000/postComment', {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(toSend)
+            });
+            if (response.ok) {
+                console.log('posted');
+                window.location.reload();
+            }
+        } else {
+            alert('Comment must be at least 5 characters long.');
         }
 
-        const response = await fetch('http://localhost:3000/postComment', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(toSend)
-        });
-        if (response.ok) {
-            console.log('posted');
-            window.location.reload();
-        }
+        
     }
 
     const [comments, setComments] = useState(null);
