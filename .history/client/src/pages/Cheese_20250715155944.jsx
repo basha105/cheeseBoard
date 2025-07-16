@@ -104,7 +104,7 @@ function Cheese() {
                         <div className="m-4 w-100 h-75 shadow rounded overflow-hidden">
                             <img src={getImage(cheese.name)} alt=""/>
                         </div>
-                        <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 border-1 border-gray-200 rounded">
+                        <div className="p-4 m-4 flex flex-col gap-3 flex-wrap justify-start w-65 bg-gray-100 shadow border-1 border-gray-200 rounded">
                             <h1 className="h-fit text-4xl">{capitalizeCheese(cheese.name)}</h1>
                             <div className="flex flex-col gap-1">
                                 <p className="h-fit ">Origin: {fixCountryName(cheese.country_name)} <span class={setFlag()}></span></p>
@@ -113,7 +113,7 @@ function Cheese() {
                         </div>
                     </div>
 
-                    <div className="w-173 bg-white border-1 border-gray-200 rounded p-6">
+                    <div className="w-173 bg-gray-100 shadow border-1 border-gray-200 rounded p-6">
                         {cheese.desc}
                     </div>
 
@@ -122,7 +122,7 @@ function Cheese() {
                         <form className="flex flex-col" onSubmit={handleSubmit}>
                             <label htmlFor="comment"></label>
                             <textarea className="border-1 border-gray-200 rounded w-150 h-35 resize-none focus:outline-none indent-1" name="comment" id="comment" placeholder={`Share your experience with ${cheese.name}...`}></textarea>
-                            <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-400 text-white rounded w-25" type="submit">Post</button>
+                            <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-300 text-white rounded w-25" type="submit">Post</button>
                         </form>
 
                     </div>

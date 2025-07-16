@@ -113,7 +113,7 @@ function Cheese() {
                         </div>
                     </div>
 
-                    <div className="w-173 bg-white border-1 border-gray-200 rounded p-6">
+                    <div className="w-173 bg-gray-100 shadow border-1 border-gray-200 rounded p-6">
                         {cheese.desc}
                     </div>
 
@@ -122,7 +122,7 @@ function Cheese() {
                         <form className="flex flex-col" onSubmit={handleSubmit}>
                             <label htmlFor="comment"></label>
                             <textarea className="border-1 border-gray-200 rounded w-150 h-35 resize-none focus:outline-none indent-1" name="comment" id="comment" placeholder={`Share your experience with ${cheese.name}...`}></textarea>
-                            <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-400 text-white rounded w-25" type="submit">Post</button>
+                            <button className="cursor-pointer m-1 p-1 border-1 border-blue-400 bg-blue-300 text-white rounded w-25" type="submit">Post</button>
                         </form>
 
                     </div>

@@ -13,7 +13,7 @@ function capitalizeCheese(name) {
 
 function CheeseCard({ name, country }) {
     return (
-        <div className="flex flex-wrap justify-center w-50 p-5 border-1 border-gray-200 rounded m-2">
+        <div className="flex flex-wrap justify-center w-50 p-5 border-1 border-gray-500 rounded-2xl m-2">
             <div className="rounded overflow-hidden">
                 <img className="w-xs" src={getImage(name)} alt="gouda img"/>
             </div>

@@ -14,7 +14,7 @@ function Home() {
                     <div>"Poets have been mysteriously silent on the subject of cheese." - G.K. Chesterton</div>
                 </div>
                 <div>
-                    <div className="mb-4 text-4xl text-blue-400">Click on cheeses to get started.</div>
+                    <div className="mb-4 text-4xl text-blue-400">Lets get started.</div>
                 </div>
 
             </div>
